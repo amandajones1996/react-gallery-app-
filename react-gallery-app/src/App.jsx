@@ -46,6 +46,9 @@ function App() {
             <Nav updateUrlWithQuery={updateUrlWithQuery}/>
             <Routes>
                 <Route path="/" element={<Navigate replace to="/cats" />} />
+                <Route path="/dogs" element={<PhotoList photos={photos} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
+                <Route path="/computers" element={<PhotoList photos={photos} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
+                <Route path="/birds" element={<PhotoList photos={photos} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
                 <Route path="/:queryTag" element={<PhotoList photos={photos} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
             </Routes>
         </div>
