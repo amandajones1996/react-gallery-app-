@@ -36,20 +36,20 @@ function App() {
         e.preventDefault();
         const tag = searchValue.current.value
         setUrl(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
-        navigate(tag)
+        navigate(`/search/${tag}`)
         e.currentTarget.reset();
     }
-
+    
     return(
         <div>
             <Search handleSubmit={handleSubmit} searchValue={searchValue}/>
             <Nav updateUrlWithQuery={updateUrlWithQuery}/>
             <Routes>
                 <Route path="/" element={<Navigate replace to="/cats" />} />
-                <Route path="/dogs" element={<PhotoList photos={photos} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
-                <Route path="/computers" element={<PhotoList photos={photos} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
-                <Route path="/birds" element={<PhotoList photos={photos} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
-                <Route path="/:queryTag" element={<PhotoList photos={photos} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
+                <Route path="/dogs" element={<PhotoList photos={photos} title={"dogs"} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
+                <Route path="/computers" element={<PhotoList photos={photos} title={"computers"} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
+                <Route path="/cats" element={<PhotoList photos={photos} title={"cats"} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
+                <Route path="/search/:queryTag" element={<PhotoList title={`${searchValue}`} photos={photos} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
             </Routes>
         </div>
         );

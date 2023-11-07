@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Photo from './Photo'
 import { useParams } from "react-router-dom";
 
-const PhotoList = ({ photos, updateUrlWithQuery }) => {
+const PhotoList = ({ photos, updateUrlWithQuery, title }) => {
     const { queryTag } = useParams();
 
     // error trying to render when updating state without this "badstate?"
@@ -13,7 +13,7 @@ const PhotoList = ({ photos, updateUrlWithQuery }) => {
 
     return (
         <div className="photo-container">
-            <h2>{queryTag}</h2>
+            <h2>{title}</h2>
             <ul>
                 {photos.map((photo) => {
                     return <Photo key={photo.id} id={photo.id} secret={photo.secret} server={photo.server} title={photo.title} />
