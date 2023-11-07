@@ -16,7 +16,7 @@ const PhotoList = ({ photos, updateUrlWithQuery }) => {
             <h2>{queryTag}</h2>
             <ul>
                 {photos.map((photo) => {
-                    <Photo key={photo.id} id={photo.id} secret={photo.secret} sever={photo.server} title={photo.title} />
+                    return <Photo key={photo.id} id={photo.id} secret={photo.secret} server={photo.server} title={photo.title} />
                 })}
             </ul>
         </div>

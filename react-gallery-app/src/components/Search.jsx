@@ -3,6 +3,7 @@
 
 const Search = ({ handleSubmit, searchValue }) => {
     return (
+        // submit function when user submits form
         <form className="search-form" onSubmit={(e) => handleSubmit(e)}>
             <input
                 type="search"

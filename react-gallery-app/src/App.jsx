@@ -26,10 +26,12 @@ function App() {
         fetchData();
     }, [url])
 
+    // function to handle url updates 
     const updateUrlWithQuery = (query) => {
         setUrl(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
     }
 
+    // after form submit this function updates search and renders to it
     const handleSubmit = (e) => {
         e.preventDefault();
         const tag = searchValue.current.value
@@ -41,10 +43,10 @@ function App() {
     return(
         <div>
             <Search handleSubmit={handleSubmit} searchValue={searchValue}/>
-            <Nav />
+            <Nav updateUrlWithQuery={updateUrlWithQuery}/>
             <Routes>
                 <Route path="/" element={<Navigate replace to="/cats" />} />
-                <Route path="/:query" element={<PhotoList photos={photos} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
+                <Route path="/:queryTag" element={<PhotoList photos={photos} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
             </Routes>
         </div>
         );
