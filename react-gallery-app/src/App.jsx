@@ -11,6 +11,7 @@ import PhotoList from "./components/PhotoList";
 function App() {
     const navigate = useNavigate();
     const searchValue = useRef();
+    const [query, setQuery] = useState();
     const [photos, setPhotos] = useState([]);
     const [url, setUrl] = useState(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=cats&per_page=24&format=json&nojsoncallback=1`)
 
@@ -35,6 +36,7 @@ function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const tag = searchValue.current.value
+        setQuery(tag)
         setUrl(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
         navigate(`/search/${tag}`)
         e.currentTarget.reset();
@@ -49,7 +51,7 @@ function App() {
                 <Route path="/dogs" element={<PhotoList photos={photos} title={"dogs"} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
                 <Route path="/computers" element={<PhotoList photos={photos} title={"computers"} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
                 <Route path="/cats" element={<PhotoList photos={photos} title={"cats"} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
-                <Route path="/search/:queryTag" element={<PhotoList title={`${searchValue}`} photos={photos} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
+                <Route path="/search/:queryTag" element={<PhotoList title={`${query}`} photos={photos} searchValue={searchValue} updateUrlWithQuery={updateUrlWithQuery} />} />
             </Routes>
         </div>
         );
